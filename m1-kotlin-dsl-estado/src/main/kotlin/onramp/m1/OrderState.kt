@@ -38,8 +38,8 @@ data class OrderBoardState(
 
 /**
  * Ejercicio 4 (inmutabilidad en StateFlow):
- * Observa por qué la prueba falla: al mutar `orders.add(...)`, el estado anterior y el nuevo
- * apuntan a la misma lista en memoria, así que StateFlow cree que nada cambió y no avisa a la pantalla.
+ * Observa la prueba: agregas un pedido, la lista sí crece, pero la pantalla nunca se entera.
+ * Explica por qué antes de cambiar el código.
  *
  * Corrige `OrderBoardState` y esta clase para que cada cambio produzca un estado nuevo en lugar de
  * modificar el anterior.

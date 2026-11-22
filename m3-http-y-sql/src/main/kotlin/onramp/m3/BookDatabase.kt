@@ -32,8 +32,8 @@ class BookDatabase(
 
     /**
      * Ejercicio 3 (upsert conservando columnas locales):
-     * Error intencional: `INSERT OR REPLACE` borra la fila vieja e inserta una nueva,
-     * así que reinicia `favorite` a 0 y `local_note` a vacío cada vez que sincronizas.
+     * Error intencional: después de sincronizar dos veces, los favoritos y las notas locales
+     * desaparecen. Averigua qué hace este SQL cuando el `id` ya existe.
      *
      * Cambia el SQL para que, si el libro ya existe, solo se actualicen `title` y `author`.
      */

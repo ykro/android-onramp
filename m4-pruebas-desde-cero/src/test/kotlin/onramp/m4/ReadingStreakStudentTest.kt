@@ -14,7 +14,7 @@ class ReadingStreakStudentTest {
 
     @Ignore("Pendiente")
     @Test
-    fun `caso normal devuelve la racha consecutiva mas larga`() {
+    fun `caso normal devuelve la racha consecutiva más larga`() {
     }
 
     @Ignore("Pendiente")
@@ -24,6 +24,6 @@ class ReadingStreakStudentTest {
 
     @Ignore("Pendiente")
     @Test
-    fun `dias negativos cortan la racha`() {
+    fun `días negativos cortan la racha`() {
     }
 }

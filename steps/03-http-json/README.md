@@ -2,7 +2,7 @@
 
 ![Paso 3. HTTP y JSON tolerante con `MockWebServer`](diagrams/http-json.svg)
 
-Este paso toma unos 20 minutos.
+Este paso toma unos 40 minutos.
 
 ## Antes de empezar
 
@@ -19,17 +19,20 @@ Una app consume APIs que cambian con el tiempo, agregan campos sin avisar, respo
 - **Request y respuesta.** Tu app manda un request (`GET /books`) y el servidor devuelve un código de estado y un cuerpo. Los códigos `2xx` significan éxito, `4xx` que el request estaba mal y `5xx` que falló el servidor.
 - **JSON.** El cuerpo suele venir en JSON, por ejemplo `[{"id": 1, "title": "Popol Vuh"}]`. Deserializar es convertir ese texto en objetos de Kotlin.
 - **OkHttp.** Es el cliente HTTP que usa Retrofit por debajo. Armas un `Request`, lo ejecutas con `client.newCall(request).execute()` y lees la respuesta.
+- **`execute()` bloquea.** Se queda esperando hasta que llega la respuesta. En el hilo principal de Android eso congela la app, y Android lanza `NetworkOnMainThreadException`. Por eso `fetchBooks` es `suspend` y hace el request dentro de `withContext(dispatcher)`, que lo mueve a un hilo pensado para esperar red y disco (`Dispatchers.IO`). Es el puente entre las corrutinas del Paso 2 y la red.
+- **Sin red no hay código de estado.** Si no hay internet o el servidor no contesta, no llega ninguna respuesta. OkHttp lanza una `IOException`, y tu cliente debe convertirla en un resultado en lugar de dejar que la app se caiga.
 
 ## Qué vas a hacer
 
 - **Leer.** Abre [BookApiClient.kt](../../m3-http-y-sql/src/main/kotlin/onramp/m3/BookApiClient.kt) y [BookApiClientTest.kt](../../m3-http-y-sql/src/test/kotlin/onramp/m3/BookApiClientTest.kt). En el test, identifica qué responde `MockWebServer` en cada caso y qué `ApiResult` espera.
 - **Debuguear.** Corre `./gradlew paso3 --no-parallel`. Mira qué campos trae el JSON del primer test que `BookDto` no tiene.
-- **Escribir.** Implementa `fetchBooks` cumpliendo los cuatro puntos del comentario.
+- **Escribir.** Implementa `fetchBooks` cumpliendo los cinco puntos del comentario.
 
 ## Criterios de aceptación
 
 - `CA-3.1` `fetchBooks()` convierte una respuesta `200` en `ApiResult.Success` aunque el JSON traiga campos extra (`pages`, `isbn`, `edition`).
 - `CA-3.2` `fetchBooks()` devuelve `ApiResult.HttpError(500)` ante un `500` y `ApiResult.ParseError` ante JSON inválido.
+- `CA-3.3` `fetchBooks()` devuelve `ApiResult.NetworkError` cuando el servidor no contesta, en lugar de lanzar la excepción.
 
 ## Al terminar
 
