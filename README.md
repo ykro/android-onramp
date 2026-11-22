@@ -44,6 +44,7 @@ Cuando `./gradlew ready --no-parallel` termine en verde, estás listo para empez
 ## Guías de lectura y uso de IA
 
 - **Cómo leer un ADR:** revisa el ejemplo de 15 líneas para Android en [docs/adr-ejemplo.md](docs/adr-ejemplo.md) antes de abrir `ARCHITECTURE_DECISIONS.md` en el curso.
+- **Qué es el CI (Integración Continua):** entiende qué corre GitHub Actions tras cada `git push` en [docs/ci.md](docs/ci.md).
 - **Firebase en la Unidad 3:** repasa Firebase Auth, Firestore con `callbackFlow` y `firestore.rules` en [docs/firebase.md](docs/firebase.md).
 - **Glosario técnico:** si algún término te resulta nuevo, consulta [docs/glosario.md](docs/glosario.md).
 - **Uso de IA:** puedes usar cualquier asistente de IA mientras trabajas; [AGENTS.md](AGENTS.md) lo configura en **modo tutor socrático** para guiarte con pistas antes de mostrar la solución.
