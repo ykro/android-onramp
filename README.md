@@ -6,27 +6,28 @@ Este repositorio es un on-ramp, una nivelación práctica para llegar con lo mí
 
 ## Por dónde empezar
 
-Si es tu primera vez con Kotlin, sigue los pasos del 0 al 5 en orden; el recorrido completo toma unas cuatro horas y media, sin contar la instalación de Android Studio. Si ya usas Kotlin, haz el Paso 0 de todas formas (son minutos y confirma tu JDK y tu Android SDK) y luego elige el paso que necesites, porque cada uno se verifica por separado.
+Si es tu primera vez con Kotlin, sigue los pasos del 0 al 6 en orden; el recorrido completo toma unas cinco horas, sin contar la instalación de Android Studio. Para la Unidad 1 bastan los pasos 0, 1 (sin el ejercicio 2), 2, 3 y 6, unas tres horas y media; haz los pasos 4 y 5 antes de la Unidad 2.
 
 Cada paso sigue la misma forma. Empieza con tres preguntas para pensar antes de tocar código, explica por qué importa para el curso, te pide leer, debuguear y escribir algo pequeño, y cierra con preguntas sobre un caso nuevo. Si te trabas, cada paso tiene tres pistas que van de la idea general a un esqueleto de código.
 
 | Paso | Tiempo | Qué practicas | Archivo | Guía |
 | --- | --- | --- | --- | --- |
-| Paso 0 | 40 min | Revisar JDK y Android SDK con `doctor`, y Kotlin básico (tipos nulos, `data class`, `filter`/`map`, `when`) | [PrimerosPasos.kt](m0-doctor/src/main/kotlin/onramp/m0/PrimerosPasos.kt) | [steps/00-entorno-y-kotlin](steps/00-entorno-y-kotlin/README.md) |
-| Paso 1 | 50 min | Lambdas con receptor (la sintaxis de Compose y Koin), `sealed interface` y `StateFlow` inmutable | [DslBuilders.kt](m1-kotlin-dsl-estado/src/main/kotlin/onramp/m1/DslBuilders.kt), [OrderState.kt](m1-kotlin-dsl-estado/src/main/kotlin/onramp/m1/OrderState.kt) | [steps/01-kotlin-y-stateflow](steps/01-kotlin-y-stateflow/README.md) |
-| Paso 2 | 60 min | `suspend` y `delay` con reloj virtual, cancelación, estado que sobrevive al redibujo y tu primer `@Composable` con test de UI | [CoroutinesAndUi.kt](m2-corrutinas-y-ui/src/main/kotlin/onramp/m2/CoroutinesAndUi.kt), [StudyCounterScreen.kt](m2-corrutinas-y-ui/src/main/kotlin/onramp/m2/StudyCounterScreen.kt) | [steps/02-corrutinas-y-ui](steps/02-corrutinas-y-ui/README.md) |
-| Paso 3 | 40 min | Requests con OkHttp, JSON tolerante a campos nuevos y errores HTTP o de parseo con `MockWebServer` | [BookApiClient.kt](m3-http-y-sql/src/main/kotlin/onramp/m3/BookApiClient.kt) | [steps/03-http-json](steps/03-http-json/README.md) |
-| Paso 4 | 45 min | Tu primera base de datos, tablas, llave primaria, `SELECT` y `ON CONFLICT DO UPDATE` en SQLite, y su equivalente en Room 3 | [BookDatabase.kt](m3-http-y-sql/src/main/kotlin/onramp/m3/BookDatabase.kt) | [steps/04-sql-y-upsert](steps/04-sql-y-upsert/README.md) |
-| Paso 5 | 30 min | Tests desde cero con JUnit que se ponen en rojo ante dos versiones con un bug | [ReadingStreakStudentTest.kt](m4-pruebas-desde-cero/src/test/kotlin/onramp/m4/ReadingStreakStudentTest.kt) | [steps/05-pruebas-desde-cero](steps/05-pruebas-desde-cero/README.md) |
+| Paso 0 | 40 min | Revisar JDK y Android SDK con `doctor`, y Kotlin básico (tipos nulos, `data class`, `filter`/`map`, `when`) | [PrimerosPasos.kt](paso0-entorno-y-kotlin/src/main/kotlin/onramp/paso0/PrimerosPasos.kt) | [steps/00-entorno-y-kotlin](steps/00-entorno-y-kotlin/README.md) |
+| Paso 1 | 35 min | Lambdas con receptor (la sintaxis de Compose y Koin), `sealed interface` y `StateFlow` inmutable | [DslBuilders.kt](paso1-kotlin-y-stateflow/src/main/kotlin/onramp/paso1/DslBuilders.kt), [OrderState.kt](paso1-kotlin-y-stateflow/src/main/kotlin/onramp/paso1/OrderState.kt) | [steps/01-kotlin-y-stateflow](steps/01-kotlin-y-stateflow/README.md) |
+| Paso 2 | 45 min | `suspend` y `delay` con reloj virtual, cancelación y tu primer `@Composable` con estado y test de UI | [CoroutinesAndUi.kt](paso2-corrutinas-y-ui/src/main/kotlin/onramp/paso2/CoroutinesAndUi.kt), [StudyCounterScreen.kt](paso2-corrutinas-y-ui/src/main/kotlin/onramp/paso2/StudyCounterScreen.kt) | [steps/02-corrutinas-y-ui](steps/02-corrutinas-y-ui/README.md) |
+| Paso 3 | 75 min | UI declarativa, MVVM con `ViewModel`, `StateFlow` y `viewModelScope`, repositorio e inyección de dependencias con Koin | [ShelfViewModel.kt](paso3-mvvm-y-di/src/main/kotlin/onramp/paso3/ShelfViewModel.kt), [ShelfScreen.kt](paso3-mvvm-y-di/src/main/kotlin/onramp/paso3/ShelfScreen.kt) | [steps/03-mvvm-y-di](steps/03-mvvm-y-di/README.md) |
+| Paso 4 | 40 min | Requests con OkHttp, JSON tolerante a campos nuevos y errores HTTP o de parseo con `MockWebServer` | [BookApiClient.kt](paso4-http-json/src/main/kotlin/onramp/paso4/BookApiClient.kt) | [steps/04-http-json](steps/04-http-json/README.md) |
+| Paso 5 | 45 min | Tu primera base de datos, tablas, llave primaria, `SELECT` y `ON CONFLICT DO UPDATE` en SQLite, y su equivalente en Room 3 | [BookDatabase.kt](paso5-sql-y-upsert/src/main/kotlin/onramp/paso5/BookDatabase.kt) | [steps/05-sql-y-upsert](steps/05-sql-y-upsert/README.md) |
+| Paso 6 | 30 min | Tests desde cero con JUnit que se ponen en rojo ante dos versiones con un bug | [ReadingStreakStudentTest.kt](paso6-pruebas-desde-cero/src/test/kotlin/onramp/paso6/ReadingStreakStudentTest.kt) | [steps/06-pruebas-desde-cero](steps/06-pruebas-desde-cero/README.md) |
 
 ## Inicio rápido
 
 1. Instala [Android Studio](https://developer.android.com/studio), que trae JDK 21 y el Android SDK, y clona este repositorio.
 2. Corre `./gradlew doctor --no-parallel` (en Windows, `gradlew.bat doctor --no-parallel`) y sigue lo que te pida.
-3. Sigue el [Paso 0](steps/00-entorno-y-kotlin/README.md). `./gradlew :m0-doctor:run --no-parallel` corre tu primer programa en Kotlin.
-4. Verifica cada paso con `./gradlew paso0 --no-parallel` hasta `./gradlew paso5 --no-parallel`. `./gradlew ready --no-parallel` corre los seis juntos.
+3. Sigue el [Paso 0](steps/00-entorno-y-kotlin/README.md). `./gradlew :paso0-entorno-y-kotlin:run --no-parallel` corre tu primer programa en Kotlin.
+4. Verifica cada paso con `./gradlew paso0 --no-parallel` hasta `./gradlew paso6 --no-parallel`. `./gradlew ready --no-parallel` corre los siete juntos.
 
-Al inicio todos los pasos fallan a propósito; cada uno pasa cuando lo resuelves. Cuando `ready` termina en verde, estás listo para el curso.
+Al inicio todos los pasos fallan; cada uno pasa cuando lo resuelves. Con la ruta de la Unidad 1, `paso1` y `ready` quedan en rojo por lo que dejaste para después; es lo esperado.
 
 ## Errores comunes al preparar el entorno
 
