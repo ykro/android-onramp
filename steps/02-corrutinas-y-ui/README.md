@@ -2,7 +2,7 @@
 
 ![Paso 2. Corrutinas, cancelación y estado en UI](diagrams/corrutinas-y-ui.svg)
 
-Este paso toma unos 45 minutos.
+Este paso toma unos 60 minutos.
 
 ## Antes de empezar
 
@@ -32,25 +32,29 @@ En Android la interfaz corre en el hilo principal; si lo bloqueas con `Thread.sl
   ```
 
   Sin `remember`, `veces` volvería a 0 en cada redibujo, igual que el `count` del ejercicio 3.
+- **Composable.** Una función marcada con `@Composable` describe un pedazo de pantalla. No devuelve nada; llama a otras como `Text`, `Button` o `Column`, y Compose las dibuja. `Column` apila a sus hijos de arriba hacia abajo, y `Button` recibe en `onClick` lo que pasa al tocarlo.
+- **Test de UI.** `createComposeRule()` dibuja un composable sin emulador. Con `onNodeWithText("…")` buscas un elemento por su texto, con `performClick()` lo tocas y con `assertExists()` compruebas que está en pantalla.
 
 ## Qué vas a hacer
 
-- **Leer.** Abre [CoroutinesAndUi.kt](../../m2-corrutinas-y-ui/src/main/kotlin/onramp/m2/CoroutinesAndUi.kt) y [Module2Test.kt](../../m2-corrutinas-y-ui/src/test/kotlin/onramp/m2/Module2Test.kt). En el test de `countdownTicks`, ubica qué parte mide el tiempo real.
-- **Debuguear.** Corre `./gradlew paso2 --no-parallel`. Para el ejercicio 3, sigue a mano qué vale `count` en la primera llamada, después de `onIncrement()` y en la segunda llamada a `renderStudyCounter`.
-- **Escribir.** Resuelve los tres ejercicios. No uses `Thread.sleep` en ningún lado.
+- **Leer.** Abre [CoroutinesAndUi.kt](../../m2-corrutinas-y-ui/src/main/kotlin/onramp/m2/CoroutinesAndUi.kt) y [Module2Test.kt](../../m2-corrutinas-y-ui/src/test/kotlin/onramp/m2/Module2Test.kt). En el test de `countdownTicks`, ubica qué parte mide el tiempo real. Después abre [StudyCounterScreen.kt](../../m2-corrutinas-y-ui/src/main/kotlin/onramp/m2/StudyCounterScreen.kt) y [StudyCounterScreenTest.kt](../../m2-corrutinas-y-ui/src/test/kotlin/onramp/m2/StudyCounterScreenTest.kt), y sigue en el test qué toca y qué espera ver.
+- **Debuguear.** Corre `./gradlew paso2 --no-parallel`. Para el ejercicio 3, sigue a mano qué vale `count` en la primera llamada, después de `onIncrement()` y en la segunda llamada a `renderStudyCounter`. Para el ejercicio 4, el test dice que después del clic la pantalla sigue en 0. Compara `StudyCounterScreen` con el `Contador` de arriba.
+- **Escribir.** Resuelve los cuatro ejercicios. En el 4 escribes tu primer `Button` en Compose, el de «Reiniciar». No uses `Thread.sleep` en ningún lado.
 
 ## Criterios de aceptación
 
 - `CA-2.1` `countdownTicks(from = 3, stepMs = 10_000L)` emite `3, 2, 1, 0` y el test termina en menos de 2 segundos reales.
 - `CA-2.2` `runSafely` devuelve `Error: sin internet` ante un `IllegalStateException("sin internet")` y deja pasar la cancelación del `Job`.
 - `CA-2.3` `renderStudyCounter` conserva el contador entre redibujos con la misma `UiMemory` y lo reinicia con `onReset()`.
+- `CA-2.4` En `StudyCounterScreen`, un clic en «Sumar sesión» muestra «1 sesión completada», otro muestra «2 sesiones completadas» y un clic en «Reiniciar» regresa a «0 sesiones completadas».
 
 ## Al terminar
 
 1. Si cambias `delay(stepMs)` por `Thread.sleep(stepMs)`, ¿qué pasa con el tiempo del test de `CA-2.1`? ¿Por qué el reloj virtual no lo puede adelantar?
 2. En `runSafely`, ¿qué pasaría si el `catch (e: Exception)` fuera antes que el de `CancellationException`?
 3. Con la misma `UiMemory`, dos llamadas a `renderStudyCounter` comparten contador. ¿Qué pasaría con dos `UiMemory` distintas? ¿A qué equivale eso en una app?
-4. Explica en tres líneas, con tus palabras, qué cambiaste y por qué. Si no puedes, vuelve a la pista 1 antes de seguir.
+4. En el ejercicio 4, el clic sí cambiaba `count` a 1. ¿Por qué la pantalla seguía mostrando 0?
+5. Explica en tres líneas, con tus palabras, qué cambiaste y por qué. Si no puedes, vuelve a la pista 1 antes de seguir.
 
 ## Cómo verificar
 

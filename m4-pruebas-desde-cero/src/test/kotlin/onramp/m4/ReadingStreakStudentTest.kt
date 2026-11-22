@@ -19,7 +19,7 @@ class ReadingStreakStudentTest {
 
     @Ignore("Pendiente")
     @Test
-    fun `casos borde devuelven cero`() {
+    fun `edge cases devuelven cero`() {
     }
 
     @Ignore("Pendiente")
