@@ -25,13 +25,13 @@ sealed interface OrderBannerState {
  * - Failed -> "Error: <reason>"
  */
 fun renderOrderBanner(state: OrderBannerState): String {
-    TODO("Ejercicio 3: usa when (state) cubriendo las cuatro ramas sin else")
+    TODO("Ejercicio 3: devuelve el texto de cada estado. Si mañana alguien agrega un estado nuevo, el compilador debe avisar aquí.")
 }
 
 // --- Parte 4: Por qué una MutableList rompe StateFlow ---
 
-// Error intencional: esta data class guarda una MutableList.
-// Cámbiala por `List<String> = emptyList()` y actualiza el estado con `copy(...)`.
+// Error intencional: esta data class guarda una lista que se modifica en el mismo lugar.
+// Lee el Ejercicio 4 para ver qué provoca.
 data class OrderBoardState(
     val orders: MutableList<String> = mutableListOf(),
 )
@@ -41,7 +41,8 @@ data class OrderBoardState(
  * Observa por qué la prueba falla: al mutar `orders.add(...)`, el estado anterior y el nuevo
  * apuntan a la misma lista en memoria, así que StateFlow cree que nada cambió y no avisa a la pantalla.
  *
- * Corrige `OrderBoardState` y esta clase usando una `List<String>` de solo lectura y `_state.update { ... }`.
+ * Corrige `OrderBoardState` y esta clase para que cada cambio produzca un estado nuevo en lugar de
+ * modificar el anterior.
  */
 class OrderBoard {
     private val _state = MutableStateFlow(OrderBoardState())

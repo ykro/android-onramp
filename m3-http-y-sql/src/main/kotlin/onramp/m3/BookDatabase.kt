@@ -27,7 +27,7 @@ class BookDatabase(
      * - `local_note TEXT NOT NULL DEFAULT ''`
      */
     fun createSchema() {
-        TODO("Ejercicio 2: ejecuta CREATE TABLE IF NOT EXISTS books (...)")
+        TODO("Ejercicio 2: hoy la tabla no existe. Créala con las columnas de arriba, sin fallar si ya existía.")
     }
 
     /**
@@ -35,8 +35,7 @@ class BookDatabase(
      * Error intencional: `INSERT OR REPLACE` borra la fila vieja e inserta una nueva,
      * así que reinicia `favorite` a 0 y `local_note` a vacío cada vez que sincronizas.
      *
-     * Cambia el SQL a `INSERT INTO books (id, title, author) VALUES (?, ?, ?) ON CONFLICT(id) DO UPDATE SET ...`
-     * para actualizar solo `title` y `author`.
+     * Cambia el SQL para que, si el libro ya existe, solo se actualicen `title` y `author`.
      */
     fun syncFromApi(books: List<BookDto>) {
         val sql = "INSERT OR REPLACE INTO books (id, title, author) VALUES (?, ?, ?)"
@@ -69,7 +68,7 @@ class BookDatabase(
      * Devuelve los libros con `favorite = 1`, ordenados alfabéticamente por `title` ascendente.
      */
     fun findFavoritesOrderedByTitle(): List<StoredBook> {
-        TODO("Ejercicio 4: ejecuta SELECT id, title, author, favorite, local_note FROM books WHERE favorite = 1 ORDER BY title ASC")
+        TODO("Ejercicio 4: devuelve los libros favoritos ordenados por título, con todas sus columnas.")
     }
 
     override fun close() {

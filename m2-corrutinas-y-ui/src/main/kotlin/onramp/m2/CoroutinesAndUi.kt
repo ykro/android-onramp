@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
  * Si `from < 0`, no emite nada.
  */
 fun countdownTicks(from: Int, stepMs: Long): Flow<Int> {
-    TODO("Ejercicio 1: usa flow { ... } con emit(...) y delay(stepMs), nunca Thread.sleep")
+    TODO("Ejercicio 1: emite la cuenta regresiva sin bloquear el hilo. Los tests usan un reloj virtual que solo avanza con esperas suspend.")
 }
 
 /**
@@ -18,7 +18,7 @@ fun countdownTicks(from: Int, stepMs: Long): Flow<Int> {
  * Si la corrutina se cancela (`CancellationException`), debes relanzar esa excepción.
  */
 suspend fun runSafely(action: suspend () -> String): String {
-    TODO("Ejercicio 2: usa try/catch, relanza CancellationException y convierte otras excepciones en texto")
+    TODO("Ejercicio 2: convierte los errores normales en texto, pero deja que la cancelación siga su camino.")
 }
 
 // --- Parte 3: Estado en pantallas reactivas ---
@@ -50,7 +50,8 @@ data class CounterFrame(
  * Esta función se llama de nuevo cada vez que la pantalla se redibuja.
  * Error intencional: `var count = 0` se reinicia en cada llamada.
  *
- * Corrige la función usando `memory.remember("sessions") { 0 }` para conservar el contador.
+ * Corrige la función para que el contador viva en `memory` y sobreviva entre llamadas.
+ * Los tests esperan que lo guardes con la clave `"sessions"`.
  *
  * Texto esperado en `label`:
  * - 0 -> "0 sesiones completadas"

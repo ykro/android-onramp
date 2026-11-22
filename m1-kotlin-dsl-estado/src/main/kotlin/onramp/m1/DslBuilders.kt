@@ -17,7 +17,7 @@ class ColumnScope {
  * Crea un `ColumnScope`, ejecuta `content` sobre ese receptor y devuelve las líneas acumuladas.
  */
 fun miniColumn(content: ColumnScope.() -> Unit): List<String> {
-    TODO("Ejercicio 1: crea ColumnScope(), llama scope.content() y devuelve scope.buildLines()")
+    TODO("Ejercicio 1: hoy miniColumn no ejecuta el bloque que recibe. Debe correrlo sobre un ColumnScope nuevo y devolver las líneas que ese bloque agregó.")
 }
 
 // --- Parte 2: Cómo funciona `module { single { ... } }` ---
@@ -53,5 +53,5 @@ class ModuleScope {
  * Crea un `ModuleScope`, ejecuta `definitions` sobre ese receptor y devuelve el `MiniContainer`.
  */
 fun miniModule(definitions: ModuleScope.() -> Unit): MiniContainer {
-    TODO("Ejercicio 2: crea ModuleScope(), llama scope.definitions() y devuelve scope.buildContainer()")
+    TODO("Ejercicio 2: hoy miniModule no ejecuta las definiciones. Debe correrlas sobre un ModuleScope nuevo y devolver el contenedor que arma ese scope.")
 }

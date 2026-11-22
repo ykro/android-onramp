@@ -22,7 +22,7 @@ sealed interface ApiResult<out T> {
  * Ejercicio 1 (HTTP + JSON tolerante a campos extra):
  * - Haz GET a `"$baseUrl/books"`.
  * - Si `!response.isSuccessful`, devuelve `ApiResult.HttpError(response.code)`.
- * - Decodifica el JSON como `List<BookDto>` ignorando campos desconocidos (`ignoreUnknownKeys = true`).
+ * - Decodifica el JSON como `List<BookDto>` sin fallar cuando el API agrega campos que `BookDto` no conoce.
  * - Si el JSON está roto (`SerializationException`), devuelve `ApiResult.ParseError`.
  */
 class BookApiClient(
@@ -30,6 +30,6 @@ class BookApiClient(
     private val client: OkHttpClient = OkHttpClient(),
 ) {
     fun fetchBooks(): ApiResult<List<BookDto>> {
-        TODO("Ejercicio 1: ejecuta el GET con OkHttp y decodifica con Json { ignoreUnknownKeys = true }")
+        TODO("Ejercicio 1: hoy no se hace ningún request. Cumple los cuatro puntos del comentario de arriba.")
     }
 }
