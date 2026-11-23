@@ -43,6 +43,7 @@ En los pasos anteriores corriste tests que escribió el curso. En [android-cours
 
 ```bash
 ./gradlew paso6 --no-parallel
+./gradlew readyU1 --no-parallel
 ./gradlew ready --no-parallel
 ```
 

@@ -24,7 +24,7 @@ Todo el curso de Android está escrito en [Kotlin](https://kotlinlang.org/docs/g
 
 ## Qué vas a hacer
 
-- **Preparar.** Instala [Android Studio](https://developer.android.com/studio), que trae un JDK 21 y el Android SDK. Si ya tienes un JDK 21 aparte, también sirve. Corre `./gradlew doctor --no-parallel` (en Windows, `gradlew.bat doctor --no-parallel`) y sigue lo que te pida hasta que diga `[OK] Entorno listo para trabajar.`
+- **Preparar.** Instala [Android Studio](https://developer.android.com/studio), que trae un JDK 21 y el Android SDK. Si ya tienes un JDK 21 aparte, también sirve. Corre `./gradlew doctor --no-parallel` (en Windows PowerShell, `.\gradlew.bat doctor --no-parallel`) y sigue lo que te pida hasta que diga `[OK] Entorno listo para trabajar.`
 - **Leer.** Corre `./gradlew :paso0-entorno-y-kotlin:run --no-parallel` y compara lo que imprime con [PrimerosPasos.kt](../../paso0-entorno-y-kotlin/src/main/kotlin/onramp/paso0/PrimerosPasos.kt). Ubica qué función produce cada línea.
 - **Debuguear.** Tres de las líneas impresas están mal. Lee los tres `TODO` y anota qué esperabas ver en cada una.
 - **Escribir.** Corrige las tres funciones. Intenta escribir `librosLargos` sin `for`, con funciones de colecciones. Vuelve a correr el programa después de cada cambio.

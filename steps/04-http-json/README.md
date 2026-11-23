@@ -18,7 +18,13 @@ Una app consume APIs que cambian con el tiempo, agregan campos sin avisar, respo
 
 - **Request y respuesta.** Tu app manda un request (`GET /books`) y el servidor devuelve un código de estado y un cuerpo. Los códigos `2xx` significan éxito, `4xx` que el request estaba mal y `5xx` que falló el servidor.
 - **JSON.** El cuerpo suele venir en JSON, por ejemplo `[{"id": 1, "title": "Popol Vuh"}]`. Deserializar es convertir ese texto en objetos de Kotlin.
-- **OkHttp.** Es el cliente HTTP que usa Retrofit por debajo. Armas un `Request`, lo ejecutas con `client.newCall(request).execute()` y lees la respuesta.
+- **OkHttp y `kotlinx.serialization` (las tres firmas mínimas).** OkHttp es el cliente HTTP que usa Retrofit por debajo. Con estas tres llamadas construyes el request, lees el cuerpo cerrando la respuesta con `.use` y decodificas JSON ignorando campos nuevos:
+
+  ```kotlin
+  val request = Request.Builder().url("$baseUrl/books").build()
+  val body = client.newCall(request).execute().use { it.body.string() }
+  val books = Json { ignoreUnknownKeys = true }.decodeFromString<List<BookDto>>(body)
+  ```
 - **`execute()` bloquea.** Se queda esperando hasta que llega la respuesta. En el hilo principal de Android eso congela la app, y Android lanza `NetworkOnMainThreadException`. Por eso `fetchBooks` es `suspend` y hace el request dentro de `withContext(dispatcher)`, que lo mueve a un hilo pensado para esperar red y disco (`Dispatchers.IO`). Es el puente entre las corrutinas del Paso 2 y la red.
 - **Sin red no hay código de estado.** Si no hay internet o el servidor no contesta, no llega ninguna respuesta. OkHttp lanza una `IOException`, y tu cliente debe convertirla en un resultado en lugar de dejar que la app se caiga.
 
